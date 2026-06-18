@@ -1,0 +1,10 @@
+.codex
+.gradle
+.idea
+.intellijPlatform
+.kotlin
+.vscode
+bin
+build
+dist
+out
