@@ -44,4 +44,19 @@
         <listener class="sk.tuke.diffpoints.breakpoints.BreakpointHandler"
                   topic="com.intellij.debugger.impl.DebuggerManagerListener"/>
     </projectListeners>
+
+    <actions>
+        <action id="sk.tuke.diffpoints.actions.ToggleLineDiffpointAction"
+                class="sk.tuke.diffpoints.actions.ToggleLineDiffpointAction"
+                text="Add Line Diffpoint"
+                description="Adds or removes a line diffpoint at the clicked gutter line">
+            <add-to-group group-id="XDebugger.Hover.Breakpoint.Context.Menu" anchor="last"/>
+        </action>
+        <action id="sk.tuke.diffpoints.actions.ToggleGroupDiffpointAction"
+                class="sk.tuke.diffpoints.actions.ToggleGroupDiffpointAction"
+                text="Add Group Diffpoint"
+                description="Adds or removes a group diffpoint at the clicked gutter line">
+            <add-to-group group-id="XDebugger.Hover.Breakpoint.Context.Menu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
