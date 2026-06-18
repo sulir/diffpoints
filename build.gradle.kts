@@ -1,51 +1,40 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij") version "1.17.4"
+    id("org.jetbrains.kotlin.jvm") version "2.4.0"
+    id("org.jetbrains.intellij.platform") version "2.16.0"
 }
 
-group = "sk.tuke.diff"
-version = "1.5.2"
+group = "sk.tuke.diffpoints"
+version = "1.5.3-snapshot"
 
 repositories {
     mavenCentral()
-}
-
-// Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    version.set("2023.2.6")
-    type.set("IC") // Target IDE Platform
-
-    plugins.set(listOf("com.intellij.java"))
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
     implementation("org.bitbucket.cowwoc:diff-match-patch:1.2")
+
+    intellijPlatform {
+        intellijIdea("2026.1.2")
+        bundledPlugin("com.intellij.java")
+    }
+}
+
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            sinceBuild = "253"
+            untilBuild = "263.*"
+        }
+    }
 }
 
 tasks {
-    // Set the JVM compatibility versions
-    withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
+    withType<JavaCompile>().configureEach {
+        sourceCompatibility = "21"
+        targetCompatibility = "21"
     }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-    }
-
-    patchPluginXml {
-        sinceBuild.set("232")
-        untilBuild.set("262.*")
-    }
-
-//    signPlugin {
-//        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-//        privateKey.set(System.getenv("PRIVATE_KEY"))
-//        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-//    }
-//
-//    publishPlugin {
-//        token.set(System.getenv("PUBLISH_TOKEN"))
-//    }
 }
