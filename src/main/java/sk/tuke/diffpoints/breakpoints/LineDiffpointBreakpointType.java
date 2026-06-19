@@ -11,6 +11,7 @@ import com.intellij.xdebugger.XDebuggerManager;
 import com.intellij.xdebugger.XSourcePosition;
 import com.intellij.xdebugger.breakpoints.XBreakpoint;
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint;
+import com.intellij.xdebugger.breakpoints.XLineBreakpointType;
 import com.intellij.xdebugger.breakpoints.ui.XBreakpointCustomPropertiesPanel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -24,10 +25,28 @@ import java.util.UUID;
 
 public class LineDiffpointBreakpointType extends JavaLineBreakpointType {
 
+    private static final String DISPLAY_NAME = "Line Diffpoints";
+    private static final String GENERAL_DESCRIPTION = "Line Diffpoint";
+
     public static final Icon ICON = IconLoader.getIcon("/icons/LineDiffpointIcon.svg", LineDiffpointBreakpointType.class);
 
     public LineDiffpointBreakpointType() {
         super("line-diffpoint-type", "Line Diffpoint");
+    }
+
+    @Override
+    public @NotNull String getDisplayName() {
+        return DISPLAY_NAME;
+    }
+
+    @Override
+    protected @NotNull String getGeneralDescription(@NotNull XLineBreakpointType<JavaLineBreakpointProperties>.XLineBreakpointVariant variant) {
+        return GENERAL_DESCRIPTION;
+    }
+
+    @Override
+    public @NotNull String getGeneralDescription(@NotNull XLineBreakpoint<JavaLineBreakpointProperties> breakpoint) {
+        return GENERAL_DESCRIPTION;
     }
 
     @Override

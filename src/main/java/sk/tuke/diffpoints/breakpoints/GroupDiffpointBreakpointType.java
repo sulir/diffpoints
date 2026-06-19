@@ -12,6 +12,7 @@ import com.intellij.xdebugger.XSourcePosition;
 import com.intellij.xdebugger.breakpoints.XBreakpoint;
 import com.intellij.xdebugger.breakpoints.XBreakpointManager;
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint;
+import com.intellij.xdebugger.breakpoints.XLineBreakpointType;
 import com.intellij.xdebugger.breakpoints.ui.XBreakpointCustomPropertiesPanel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,11 +26,28 @@ import java.util.Set;
 import java.util.UUID;
 
 public class GroupDiffpointBreakpointType extends JavaLineBreakpointType {
+    private static final String DISPLAY_NAME = "Group Diffpoints";
+    private static final String GENERAL_DESCRIPTION = "Group Diffpoint";
 
     public static final Icon ICON = IconLoader.getIcon("/icons/GroupDiffpointIcon.svg", LineDiffpointBreakpointType.class);
 
     public GroupDiffpointBreakpointType() {
         super("group-diffpoint-type", "Group Diffpoint");
+    }
+
+    @Override
+    public @NotNull String getDisplayName() {
+        return DISPLAY_NAME;
+    }
+
+    @Override
+    protected @NotNull String getGeneralDescription(@NotNull XLineBreakpointType<JavaLineBreakpointProperties>.XLineBreakpointVariant variant) {
+        return GENERAL_DESCRIPTION;
+    }
+
+    @Override
+    public @NotNull String getGeneralDescription(@NotNull XLineBreakpoint<JavaLineBreakpointProperties> breakpoint) {
+        return GENERAL_DESCRIPTION;
     }
 
     @Override
@@ -68,7 +86,6 @@ public class GroupDiffpointBreakpointType extends JavaLineBreakpointType {
             private JPanel panel;
 
             private JBTextField nameField;
-            private JBTextField groupField;
             private JCheckBox pauseCheckbox;
 
             private ComboBoxWithWidePopup<String> groupBox;
@@ -131,15 +148,7 @@ public class GroupDiffpointBreakpointType extends JavaLineBreakpointType {
                 }
             }
         }
-//        if (groups.isEmpty()) {
-//            groups.add("Group 1");
-//        }
 
         return groups.toArray(new String[0]);
     }
-
-    private static boolean isDebugging(@NotNull Project project) {
-        return XDebuggerManager.getInstance(project).getCurrentSession() != null;
-    }
-
 }
