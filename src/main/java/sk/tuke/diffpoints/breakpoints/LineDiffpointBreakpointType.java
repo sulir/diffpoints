@@ -1,5 +1,6 @@
 package sk.tuke.diffpoints.breakpoints;
 
+import com.intellij.debugger.ui.breakpoints.Breakpoint;
 import com.intellij.debugger.ui.breakpoints.JavaLineBreakpointType;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.ComboBox;
@@ -207,6 +208,12 @@ public class LineDiffpointBreakpointType extends JavaLineBreakpointType {
     @Override
     public XSourcePosition getSourcePosition(@NotNull XBreakpoint<JavaLineBreakpointProperties> breakpoint) {
         return super.getSourcePosition(breakpoint);
+    }
+
+    @Override
+    public @NotNull Breakpoint<JavaLineBreakpointProperties> createJavaBreakpoint(
+            @NotNull Project project, @NotNull XBreakpoint<JavaLineBreakpointProperties> breakpoint) {
+        return new DiffpointLineBreakpoint(project, breakpoint, ICON);
     }
 
 }
