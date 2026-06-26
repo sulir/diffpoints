@@ -51,16 +51,7 @@ Add or remove diffpoints from the editor gutter's breakpoint context menu.
 
 ## Installation
 
-```bash
-git clone https://github.com/sulir/diffpoints.git
-cd diffpoints
-./gradlew buildPlugin
-```
-
-The plugin is written to `build/distributions/`. Install it via
-**Settings → Plugins → ⚙ → Install Plugin from Disk…** and select the generated `.zip`.
-
-To launch a sandbox IDE with the plugin preinstalled: `./gradlew runIde`.
+Simply [download the latest release](https://github.com/sulir/diffpoints/releases/download/v1.5.4/Diffpoints-1.5.4.zip) and install it via **Settings → Plugins → ⚙ → Install Plugin from Disk…** and select the downloaded ZIP file.
 
 ---
 
@@ -77,6 +68,20 @@ To launch a sandbox IDE with the plugin preinstalled: `./gradlew runIde`.
 4. **Debug your program** as usual.
 5. **Inspect the diff.** In the **Diffpoints** tool window, each diffpoint or group gets a tab showing
    its snapshots side by side, with differences highlighted.
+
+---
+
+## Development
+
+Diffpoints uses Gradle as a build system. To launch a sandbox IDE with the plugin pre-installed, run:
+
+```bash
+git clone https://github.com/sulir/diffpoints.git
+cd diffpoints
+./gradlew runIde
+```
+
+A binary version of the plugin can be built with `./gradlew buildPlugin`.
 
 ---
 
