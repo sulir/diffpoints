@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "sk.tuke.diffpoints"
-version = "1.5.3-snapshot"
+version = "1.5.4"
 
 repositories {
     mavenCentral()
