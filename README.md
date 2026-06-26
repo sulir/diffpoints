@@ -68,6 +68,8 @@ Simply [download the latest release](https://github.com/sulir/diffpoints/release
 5. **Inspect the diff.** In the **Diffpoints** tool window, each diffpoint or group gets a tab showing
    its snapshots side by side, with differences highlighted.
 
+You can also remove an unnecessary column by clicking "x". To compare manually selected objects, select "+ add to compare" from their context menu and then click "Show comparison panel".
+
 ---
 
 ## Development
