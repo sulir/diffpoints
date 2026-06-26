@@ -1,8 +1,7 @@
 # Diffpoints
 
 **Diffpoints** is an IntelliJ IDEA plugin that brings *diffing* to the debugger. A diffpoint captures
-the state of your local variables at one or more points in execution and shows exactly how it changed
-— field by field, element by element — in a color-coded, side-by-side tree view.
+the state of your local variables at one or more points in execution and shows exactly how they changed, including all their fields and elements, in a color-coded, side-by-side tree view.
 
 <a href="docs/diffpoints_tool_window.png"><img src="docs/diffpoints_tool_window.png" width="650" alt="Two snapshots of the same object compared side by side, with changed, added, and removed fields highlighted"></a>
 
@@ -12,9 +11,9 @@ the state of your local variables at one or more points in execution and shows e
 
 ### Two kinds of diffpoints
 
-- **Line Diffpoints** — capture variable state every time a line is hit and compare the snapshots
+- **Line Diffpoints**: capture variable state every time a line is hit and compare the snapshots
   against one another. Ideal for watching state evolve across loop iterations or repeated calls.
-- **Group Diffpoints** — assign several diffpoints to a named group to compare state across
+- **Group Diffpoints**: assign several diffpoints to a named group to compare state across
   *different* locations in your code, side by side.
 
 <a href="docs/diffpoints_tool_window_group.png"><img src="docs/diffpoints_tool_window_group.png" width="650" alt="A Group Diffpoint comparing the variable state captured at two different lines"></a>
@@ -38,7 +37,7 @@ and compare individual variables you select.
 
 ### Non-intrusive
 
-Each diffpoint can pause execution on every hit like a normal breakpoint, or run silently —
+Each diffpoint can pause execution on every hit like a normal breakpoint, or run silently,
 collecting snapshots in the background without stopping the program.
 
 ### Quick toggling
@@ -60,7 +59,7 @@ Simply [download the latest release](https://github.com/sulir/diffpoints/release
 1. **Place a diffpoint.** Right-click the editor gutter and choose **Add Line Diffpoint** or
    **Add Group Diffpoint**.
 2. **Configure it.** Open its properties to set a name, capture mode, whether it pauses execution,
-   and — for group diffpoints — its group.
+   and (for group diffpoints) its group.
 
    <a href="docs/group_setting.png"><img src="docs/group_setting.png" width="420" alt="The Group Diffpoint properties panel with a name field and a group selector"></a>
 
