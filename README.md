@@ -7,9 +7,23 @@ the state of your local variables at one or more points in execution and shows e
 
 ---
 
+## Quickstart
+
+1. **Place a diffpoint.** Right-click the editor gutter and choose **Add Line Diffpoint** (to compare hits of the same line) or **Add Group Diffpoint** (to compare across multiple lines).
+2. **Configure it.** Open its properties to set a name, capture mode, whether it pauses execution, and its group in the case of group diffpoints.
+
+   <a href="docs/group_setting.png"><img src="docs/group_setting.png" width="420" alt="The Group Diffpoint properties panel with a name field and a group selector"></a>
+
+3. **Open the Diffpoints tool window** through View -> Tool windows -> Diffpoints.
+4. **Debug your program** as usual.
+5. **Inspect the diff.** In the **Diffpoints** tool window, each diffpoint or group gets a tab showing
+   its snapshots side by side, with differences highlighted.
+
+---
+
 ## Features
 
-### Two kinds of diffpoints
+### Two Kinds of Diffpoints
 
 - **Line Diffpoints**: capture variable state every time a line is hit and compare the snapshots
   against one another. Ideal for watching state evolve across loop iterations or repeated calls.
@@ -18,7 +32,7 @@ the state of your local variables at one or more points in execution and shows e
 
 <a href="docs/diffpoints_tool_window_group.png"><img src="docs/diffpoints_tool_window_group.png" width="650" alt="A Group Diffpoint comparing the variable state captured at two different lines"></a>
 
-### Capture modes (Line Diffpoints)
+### Capture Modes (Line Diffpoints)
 
 | Mode | Behavior |
 | --- | --- |
@@ -29,18 +43,20 @@ the state of your local variables at one or more points in execution and shows e
 
 <a href="docs/line_settings.png"><img src="docs/line_settings.png" width="380" alt="The Line Diffpoint properties panel with the Save behavior dropdown open"></a>
 
-### Visual comparison
+### Visual Comparison
 
-Snapshots are rendered as synchronized, side-by-side trees with linked scrolling, and differences
-are color-coded (unchanged / changed / added / removed). A separate comparison panel lets you pin
-and compare individual variables you select.
+Snapshots are rendered as synchronized, side-by-side trees with linked scrolling, and differences are color-coded (unchanged / changed / added / removed). A separate comparison panel lets you pin and compare individual variables you select.
 
-### Non-intrusive
+In the main Settings window, in the Tools / Diffpoints section, it is possible to check "Highlight only right column". To reduce visual clutter, this highlights only a value in the right column of every neighboring pair if it changed within this pair.
+
+You can also remove an unnecessary column for line diffpoints by clicking "x". To compare manually selected objects, select "+ add to compare" from their context menu and then click "Show comparison panel".
+
+### Pausing Execution
 
 Each diffpoint can pause execution on every hit like a normal breakpoint, or run silently,
 collecting snapshots in the background without stopping the program.
 
-### Quick toggling
+### Quick Toggling
 
 Add or remove diffpoints from the editor gutter's breakpoint context menu.
 
@@ -51,24 +67,6 @@ Add or remove diffpoints from the editor gutter's breakpoint context menu.
 ## Installation
 
 Simply [download the latest release](https://github.com/sulir/diffpoints/releases/download/v1.5.4/Diffpoints-1.5.4.zip) and install it via **Settings → Plugins → ⚙ → Install Plugin from Disk…** and select the downloaded ZIP file.
-
----
-
-## Usage
-
-1. **Place a diffpoint.** Right-click the editor gutter and choose **Add Line Diffpoint** or
-   **Add Group Diffpoint**.
-2. **Configure it.** Open its properties to set a name, capture mode, whether it pauses execution,
-   and (for group diffpoints) its group.
-
-   <a href="docs/group_setting.png"><img src="docs/group_setting.png" width="420" alt="The Group Diffpoint properties panel with a name field and a group selector"></a>
-
-3. **Open the Diffpoints tool window** through View -> Tool windows -> Diffpoints.
-4. **Debug your program** as usual.
-5. **Inspect the diff.** In the **Diffpoints** tool window, each diffpoint or group gets a tab showing
-   its snapshots side by side, with differences highlighted.
-
-You can also remove an unnecessary column by clicking "x". To compare manually selected objects, select "+ add to compare" from their context menu and then click "Show comparison panel".
 
 ---
 
