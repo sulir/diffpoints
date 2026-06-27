@@ -1,5 +1,6 @@
 package sk.tuke.diffpoints;
 
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.ui.JBColor;
@@ -19,6 +20,7 @@ import sk.tuke.diffpoints.breakpoints.properties.GroupDiffpointProperties;
 import sk.tuke.diffpoints.breakpoints.properties.LineDiffpointProperties;
 import sk.tuke.diffpoints.objectSaving.TreeNode;
 import sk.tuke.diffpoints.objectSaving.nodes.RootNode;
+import sk.tuke.diffpoints.settings.DiffpointsSettingsListener;
 import sk.tuke.diffpoints.service.CompareListener;
 import sk.tuke.diffpoints.service.DiffpointListener;
 import sk.tuke.diffpoints.ui.CompareWindow;
@@ -37,8 +39,8 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
     private JComponent noDataComponent;
     private Project project;
     private Map<String, Integer> diffpointIdToTabIndex = new HashMap<>();
+    private final Map<Integer, ObjectTreeSyncManager> syncManagersByTabIndex = new HashMap<>();
     private CompareWindow compareWindow;
-    private ObjectTreeSyncManager syncManager;
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
@@ -68,6 +70,10 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
         toolWindow.getContentManager().addContent(content);
 
         MessageBusConnection connection = project.getMessageBus().connect();
+        ApplicationManager.getApplication()
+                .getMessageBus()
+                .connect(toolWindow.getDisposable())
+                .subscribe(DiffpointsSettingsListener.TOPIC, (DiffpointsSettingsListener) this::rebuildTrees);
 
         connection.subscribe(XDebuggerManager.TOPIC, new XDebuggerManagerListener() {
             @Override
@@ -85,6 +91,7 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
                 panel.revalidate();
                 panel.repaint();
                 diffpointIdToTabIndex = new HashMap<>();
+                syncManagersByTabIndex.clear();
 
             }
 
@@ -240,7 +247,8 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
         List<TreeNode> data = getDataFromDiffpoints(diffpointInfos);
 
         java.util.List<JComponent> panes = new ArrayList<>();
-        syncManager = new ObjectTreeSyncManager(data, false);
+        ObjectTreeSyncManager syncManager = new ObjectTreeSyncManager(data, false);
+        syncManagersByTabIndex.put(tabIndex, syncManager);
 
         java.util.List<JBScrollPane> scrollPanes = new ArrayList<>();
 
@@ -306,8 +314,6 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
     }
 
     public void rebuildTrees() {
-        if (syncManager != null) {
-            syncManager.syncAllNodes();
-        }
+        syncManagersByTabIndex.values().forEach(ObjectTreeSyncManager::syncAllNodes);
     }
 }

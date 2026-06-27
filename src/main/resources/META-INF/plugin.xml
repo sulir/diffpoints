@@ -26,6 +26,11 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="sk.tuke.diffpoints.ToolWindowFactory" id="Diffpoints"
                     secondary="true" anchor="bottom"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="sk.tuke.diffpoints.settings.DiffpointsConfigurable"
+                id="sk.tuke.diffpoints.settings.DiffpointsConfigurable"
+                displayName="Diffpoints"/>
 
         <xdebugger.breakpointType
                 id="line-diffpoint-type"

@@ -463,7 +463,7 @@ public class ObjectNodeUtils {
         }
     }
 
-    private static DiffState detectDifferences(List<String> orderedValues) {
+    public static DiffState detectDifferences(List<String> orderedValues) {
         if (orderedValues.isEmpty())
             return DiffState.UNCHANGED;
 

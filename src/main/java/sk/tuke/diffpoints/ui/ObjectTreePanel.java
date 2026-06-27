@@ -344,12 +344,13 @@ public class ObjectTreePanel extends JPanel implements Scrollable {
         if (node == null)
             return new ObjectColoredComponent(null);
 
+        DiffState displayDiffState = syncManager.getDisplayDiffState(node);
         ObjectColoredComponent rowPanel;
-        if (node.getDiffstate() == DiffState.CHANGED)
+        if (displayDiffState == DiffState.CHANGED)
             rowPanel = new ObjectColoredComponent(UiColours.MODIFIED_DIFF.colour);
-        else if (node.getDiffstate() == DiffState.ADDED)
+        else if (displayDiffState == DiffState.ADDED)
             rowPanel = new ObjectColoredComponent(UiColours.CREATED_DIFF.colour);
-        else if (node.getDiffstate() == DiffState.REMOVED)
+        else if (displayDiffState == DiffState.REMOVED)
             rowPanel = new ObjectColoredComponent(UiColours.REMOVED_DIFF.colour);
         else
             rowPanel = new ObjectColoredComponent(null);
@@ -446,7 +447,7 @@ public class ObjectTreePanel extends JPanel implements Scrollable {
 
     private ObjectColoredComponent createEmptyRow(TreeNode node, int indent) {
         ObjectColoredComponent emptyRow = getColoredRowBasedOnDiff(node);
-        if (node.getDiffstate() == DiffState.CHANGED)
+        if (syncManager.getDisplayDiffState(node) == DiffState.CHANGED)
             emptyRow = getColoredRowBasedOnDiff(null);
 
         emptyRow.setOpaque(false);
