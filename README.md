@@ -66,7 +66,7 @@ Add or remove diffpoints from the editor gutter's breakpoint context menu.
 
 ## Installation
 
-Simply [download the latest release](https://github.com/sulir/diffpoints/releases/download/v1.5.4/Diffpoints-1.5.4.zip) and install it via **Settings → Plugins → ⚙ → Install Plugin from Disk…** and select the downloaded ZIP file.
+Simply [download the latest release](https://github.com/sulir/diffpoints/releases/download/v1.6.0/Diffpoints-1.6.0.zip) and install it via **Settings → Plugins → ⚙ → Install Plugin from Disk…** and select the downloaded ZIP file.
 
 ---
 
